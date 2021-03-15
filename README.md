@@ -1,6 +1,6 @@
 # Vanilla JS Project
 
-## No libraries, no frameworks, just pure JavaScript
+## No libraries, no frameworks, just JavaScript
 
 ## User Stories
 ```
