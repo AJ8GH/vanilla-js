@@ -1,16 +1,16 @@
-function describe(testGroup, callback) {
+const describe = (testGroup, callback) => {
   console.log(`=== Test group: ${testGroup} ===`)
   return callback();
 }
 
-function it(test, result) {
+const it = (test, result) => {
   console.log(`Test: ${test}`);
   result();
 }
 
-function expect(actual) {
+const expect = (actual) => {
   return {
-    toEqual: function(expected) {
+    toEqual: (expected) => {
       if(actual == expected) {
         console.log('* PASS')
       } else {
@@ -19,7 +19,7 @@ function expect(actual) {
       }
     },
 
-    toNotEqual: function(expected) {
+    toNotEqual: (expected) => {
       if(actual != expected) {
         console.log('* PASS')
       } else {
@@ -28,7 +28,7 @@ function expect(actual) {
       }
     },
 
-    toBe: function(expected) {
+    toBe: (expected) => {
       if(actual === expected) {
         console.log('* PASS')
       } else {
@@ -37,7 +37,7 @@ function expect(actual) {
       }
     },
 
-    toNotBe: function(expected) {
+    toNotBe: (expected) => {
       if(actual !== expected) {
         console.log('* PASS')
       } else {
