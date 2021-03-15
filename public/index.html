@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <a href="" id="tiger-link">Tiger</a>
+  <div id="animal"></div>
+
+  <p id="test-1">yo</p>
+
+  <button id="button">press</button>
+
+  <script>
+    makeTigerLinkClickSayTiger();
+    makeButtonClickSayHelloTest();
+
+    function makeTigerLinkClickSayTiger() {
+      document
+        .getElementById("tiger-link")
+        .addEventListener("click", function(clickEvent) {
+          clickEvent.preventDefault();
+          sayTiger();
+        });
+    };
+
+    function sayTiger() {
+      document
+        .getElementById("animal")
+        .innerHTML = "tiger";
+    };
+
+    function makeButtonClickSayHelloTest() {
+      document
+        .getElementById("button")
+        .addEventListener("click", function(clickEvent) {
+          clickEvent.preventDefault();
+          sayHelloTest();
+        });
+    };
+
+    function sayHelloTest() {
+      document
+        .getElementById("test-1")
+        .innerHTML = "Hello Test!";
+    };
+  </script>
+</body>
+</html>
