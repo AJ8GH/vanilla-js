@@ -11,7 +11,7 @@ document.querySelector('#create').addEventListener('click', (event) => {
 
 async function create(note) {
   await emojify(note)
-    .then(data => notebook.add(new Note(data.emojified_text)));
+  .then(data => notebook.add(new Note(data.emojified_text)));
 }
 
 async function emojify(note) {
@@ -31,11 +31,17 @@ function displayPreviews() {
   const node = document.createTextNode(lastPreview);
   element.appendChild(node);
   element.setAttribute('id', `${index}`);
-  element.href = `${index}`
+  element.setAttribute('href', `#${index}`);
   document.getElementById('div1').appendChild(element);
   document.getElementById('div1').appendChild(document.createElement('br'));
 }
 
-document.querySelector('a').addEventListener('click', (event) => {
-  event.preventDefault();
-});
+function displayNote() {
+  window.addEventListener('hashchange', () => {
+    const noteId = window.location.search.split('').reverse[0];
+    document.getElementById('note')
+      .innerHTML = notebook.notes[noteId];
+  });
+
+  displayNote();
+}
