@@ -25,10 +25,17 @@ async function emojify(note) {
 }
 
 function displayPreviews() {
-  const element = document.createElement('a')
-  const lastPreview = notebook.previews()[notebook.notes.length - 1]
-  const node = document.createTextNode(lastPreview)
-  element.appendChild(node)
-  document.getElementById('div1').appendChild(element)
-  document.getElementById('div1').appendChild(document.createElement('br'))
+  const index = notebook.notes.length - 1
+  const element = document.createElement('a');
+  const lastPreview = notebook.previews()[index];
+  const node = document.createTextNode(lastPreview);
+  element.appendChild(node);
+  element.setAttribute('id', `${index}`);
+  element.href = `${index}`
+  document.getElementById('div1').appendChild(element);
+  document.getElementById('div1').appendChild(document.createElement('br'));
 }
+
+document.querySelector('a').addEventListener('click', (event) => {
+  event.preventDefault();
+});
