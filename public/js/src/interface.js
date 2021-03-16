@@ -1,10 +1,20 @@
-const notebook = new Notebook
+'use strict';
 
-const emojify = (note) => {
-  getResponse(note).then(data => notebook.add(new Note(data.emojified_text)));
+const notebook = new Notebook;
+let note;
+
+document.querySelector('#create').addEventListener('click', (event) => {
+  event.preventDefault();
+  note = document.querySelector('textarea').value;
+  create(note);
+});
+
+async function create(note) {
+  await emojify(note)
+    .then(data => notebook.add(new Note(data.emojified_text)));
 }
 
-async function getResponse(note) {
+async function emojify(note) {
   const response = await fetch('https://makers-emojify.herokuapp.com', {
     method: 'POST',
     mode: 'cors',
@@ -13,3 +23,7 @@ async function getResponse(note) {
   });
   return await response.json();
 }
+
+// notebook.previews.forEach((note) => {
+
+// });

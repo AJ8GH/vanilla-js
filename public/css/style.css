@@ -7,3 +7,8 @@ header {
   background-color: brown;
   color: white;
 }
+
+textarea, button {
+  border-radius: 10px;
+  font-size: 20px;
+}
