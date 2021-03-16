@@ -28,4 +28,6 @@ So I can remember what I took down
 Objects   | Messages
 ----------|-----------
 Note      | content
-NoteBook  | notes
+          | notes (property)
+Notebook  | create(function)
+Notebook  | preview(function)

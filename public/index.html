@@ -5,48 +5,30 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <script src="js/src/notebook.js"></script>
+  <script src="js/src/note.js"></script>
+  <script src="js/src/interface.js"></script>
 </head>
 <body>
-  <a href="" id="tiger-link">Tiger</a>
-  <div id="animal"></div>
+  <header>
+    <h1>Notebook</h1>
+    <h2>for Programmers</h2>
+  </header>
+  <main>
+    <form>
+      <textarea name="note" id="#note-input" cols="40" rows="15" placeholder="New notes go here..."></textarea><br>
+      <button>Create</button>
+    </form>
+  </main>
 
-  <p id="test-1">yo</p>
+  <section>
+    <h3>Your Notes</h3>
+  </section>
 
-  <button id="button">press</button>
-
-  <script>
-    makeTigerLinkClickSayTiger();
-    makeButtonClickSayHelloTest();
-
-    function makeTigerLinkClickSayTiger() {
-      document
-        .getElementById("tiger-link")
-        .addEventListener("click", function(clickEvent) {
-          clickEvent.preventDefault();
-          sayTiger();
-        });
-    };
-
-    function sayTiger() {
-      document
-        .getElementById("animal")
-        .innerHTML = "tiger";
-    };
-
-    function makeButtonClickSayHelloTest() {
-      document
-        .getElementById("button")
-        .addEventListener("click", function(clickEvent) {
-          clickEvent.preventDefault();
-          sayHelloTest();
-        });
-    };
-
-    function sayHelloTest() {
-      document
-        .getElementById("test-1")
-        .innerHTML = "Hello Test!";
-    };
-  </script>
+  <div id="div1">
+  </div>
 </body>
 </html>

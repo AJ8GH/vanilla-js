@@ -7,7 +7,7 @@ class Notebook {
     this.notes.push(note);
   }
 
-  previewAll() {
+  previews() {
     return this.notes.map((note) => note.preview)
   }
 }
