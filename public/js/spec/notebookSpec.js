@@ -14,15 +14,20 @@ describe('Notebook', () => {
     });
   });
 
-  describe('abbreviateAll', () => {
+  describe('previewAll', () => {
     it('abbreviates all notes', () => {
-      notebook.add('1 The swift fox jumped over the lazy dog')
-      notebook.add('2 The swift fox jumped over the lazy dog')
-      notebook.add('3 The swift fox jumped over the lazy dog')
 
-      expect(notebook.abbreviateAll()).toInclude('1 The swift fox jump')
-      expect(notebook.abbreviateAll()).toInclude('2 The swift fox jump')
-      expect(notebook.abbreviateAll()).toInclude('3 The swift fox jump')
+      note1 = new Note('1 The swift fox jumped over the lazy dog')
+      note2 = new Note('2 The swift fox jumped over the lazy dog')
+      note3 = new Note('3 The swift fox jumped over the lazy dog')
+
+      notebook.add(note1)
+      notebook.add(note2)
+      notebook.add(note3)
+
+      expect(notebook.previewAll()).toInclude('1 The swift fox jump')
+      expect(notebook.previewAll()).toInclude('2 The swift fox jump')
+      expect(notebook.previewAll()).toInclude('3 The swift fox jump')
     });
   });
 });

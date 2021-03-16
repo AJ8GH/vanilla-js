@@ -7,7 +7,7 @@ class Notebook {
     this.notes.push(note);
   }
 
-  abbreviateAll() {
-    // return this.notes.map((note) => note.abbreviate())
+  previewAll() {
+    return this.notes.map((note) => note.preview)
   }
 }
