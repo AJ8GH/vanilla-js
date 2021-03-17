@@ -3,6 +3,7 @@
 const notebook = new Notebook;
 
 getNotes();
+displayOldNotes();
 
 document.querySelector('#create').addEventListener('click', (event) => {
   event.preventDefault();
@@ -31,23 +32,17 @@ async function emojify(note) {
 
 function displayPreviews() {
   const index = notebook.notes.length - 1
-  const element = document.createElement('a');
-  const node = document.createTextNode(notebook.previews()[index]);
-  element.appendChild(node);
-  element.setAttribute('id', `${index}`);
-  element.setAttribute('href', `#${index}`);
-  document.getElementById('div1').appendChild(element);
-  document.getElementById('div1').appendChild(document.createElement('br'));
-  // "and the <div>s rejoiced at the birth of their new born <a>..."
+  document.getElementById('notes')
+    .innerHTML += `<a href="#${index}">${notebook.previews()[index]}<a><br>`
 }
 
-function displayNote() {
-  window.addEventListener('hashchange', () => {
-    const noteId = window.location.search.split('').reverse[0];
-    document.getElementById('note')
-      .innerHTML = notebook.notes[noteId];
-  });
-}
+// function displayNote() {
+//   window.addEventListener('hashchange', () => {
+//     const noteId = window.location.search.split('').reverse[0];
+//     document.getElementById('note')
+//       .innerHTML = notebook.notes[noteId];
+//   });
+// }
 
 function storeNotes() {
   localStorage.setItem('notes', JSON.stringify(notebook.notesObject()))
@@ -55,7 +50,17 @@ function storeNotes() {
 
 function getNotes() {
   const notes = JSON.parse(localStorage.getItem('notes'))
-  for (const property in notes) {
-    notebook.add(notes[property]);
+  if (!notes) { return }
+  for (const [key, value] of Object.entries(notes)) {
+    notebook.add(new Note(value));
   }
+}
+
+function displayOldNotes() {
+  const notes = document.getElementById('notes')
+  let html = ''
+  for (let i = 0; i < notebook.notes.length; i++) {
+    html += `<a href="#${i}">${notebook.notes[i].preview}</a><br>`
+  }
+  notes.innerHTML = html
 }

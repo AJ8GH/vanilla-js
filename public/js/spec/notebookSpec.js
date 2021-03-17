@@ -1,16 +1,19 @@
-let notebook;
+function cleanTestData() {
+  localStorage.clear();
+  notebook.notes = []
+}
 
 describe('Notebook', () => {
   describe('notes', () => {
     it('starts empty', () => {
-      notebook = new Notebook
+      cleanTestData();
       expect(notebook.notes).toBeEmpty()
     });
   });
 
   describe('add', () => {
     it('adds and stores a note', () => {
-      notebook = new Notebook
+      cleanTestData();
       notebook.add('Testing 1')
       expect(notebook.notes).toInclude('Testing 1')
     });
@@ -18,7 +21,7 @@ describe('Notebook', () => {
 
   describe('previewAll', () => {
     it('abbreviates all notes', () => {
-      notebook = new Notebook
+      cleanTestData();
 
       const note1 = new Note('1 The swift fox jumped over the lazy dog')
       const note2 = new Note('2 The swift fox jumped over the lazy dog')
@@ -36,7 +39,7 @@ describe('Notebook', () => {
 
   describe('notesObject', () => {
     it('returns object with all the notes content in full', () => {
-      notebook = new Notebook
+      cleanTestData();
 
       const note1 = new Note('1 The swift fox jumped over the lazy dog')
       const note2 = new Note('2 The swift fox jumped over the lazy dog')
@@ -54,7 +57,7 @@ describe('Notebook', () => {
 
   describe('previewsObject', () => {
     it('returns object with all the previews', () => {
-      notebook = new Notebook
+      cleanTestData();
 
       const note1 = new Note('1 The swift fox jumped over the lazy dog')
       const note2 = new Note('2 The swift fox jumped over the lazy dog')
