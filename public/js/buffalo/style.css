@@ -7,3 +7,18 @@ header {
   background-color: brown;
   color: white;
 }
+
+footer {
+  width: 100%;
+  background-color: brown;
+  color: white;
+  position: fixed;
+  bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+main {
+  color: black;
+}

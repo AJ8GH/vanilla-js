@@ -9,7 +9,7 @@ describe('NoteSpec', () => {
   describe('preview', () => {
     it('reduces content to 20 characters', () => {
       let note = new Note('The swift fox jumped over the lazy dog');
-      expect(note.preview).toEqual('The swift fox jumped');
+      expect(note.preview).toEqual('The swift fox jumped...');
     });
   });
 });

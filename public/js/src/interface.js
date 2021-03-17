@@ -2,11 +2,16 @@
 
 const notebook = new Notebook;
 
+getNotes();
+
 document.querySelector('#create').addEventListener('click', (event) => {
   event.preventDefault();
-  let note = document.querySelector('textarea').value;
-  create(note);
-  setTimeout(() => { displayPreviews(); }, 200);
+  create(document.querySelector('textarea').value);
+
+  setTimeout(() => {
+    storeNotes();
+    displayPreviews();
+  }, 200);
 });
 
 async function create(note) {
@@ -27,13 +32,13 @@ async function emojify(note) {
 function displayPreviews() {
   const index = notebook.notes.length - 1
   const element = document.createElement('a');
-  const lastPreview = notebook.previews()[index];
-  const node = document.createTextNode(lastPreview);
+  const node = document.createTextNode(notebook.previews()[index]);
   element.appendChild(node);
   element.setAttribute('id', `${index}`);
   element.setAttribute('href', `#${index}`);
   document.getElementById('div1').appendChild(element);
   document.getElementById('div1').appendChild(document.createElement('br'));
+  // "and the <div>s rejoiced at the birth of their new born <a>..."
 }
 
 function displayNote() {
@@ -42,6 +47,15 @@ function displayNote() {
     document.getElementById('note')
       .innerHTML = notebook.notes[noteId];
   });
+}
 
-  displayNote();
+function storeNotes() {
+  localStorage.setItem('notes', JSON.stringify(notebook.notesObject()))
+}
+
+function getNotes() {
+  const notes = JSON.parse(localStorage.getItem('notes'))
+  for (const property in notes) {
+    notebook.add(notes[property]);
+  }
 }
