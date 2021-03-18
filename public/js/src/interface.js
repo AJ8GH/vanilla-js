@@ -7,6 +7,7 @@ makeEnterCreateNote();
 getNotes();
 displayOldNotes();
 makeClickShowNote();
+hideNoteElement();
 
 document.querySelector('#create').addEventListener('click', (event) => {
   event.preventDefault();
@@ -32,6 +33,7 @@ function getNoteFromUrl(location) {
 }
 
 function createNoteHtml(index) {
+  showNoteElement();
   document.getElementById('note').innerHTML = notebook.notesObject()[index];
 }
 
@@ -89,4 +91,14 @@ function displayOldNotes() {
 
 function resetHashUrl() {
   history.pushState(null, null, ' ')
+}
+
+function hideNoteElement() {
+  const note = document.getElementById('note')
+  note.style.display = 'none'
+}
+
+function showNoteElement() {
+  const note = document.getElementById('note')
+  note.style.display = 'block'
 }
