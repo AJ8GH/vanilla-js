@@ -13,25 +13,33 @@
   <script defer src="js/src/interface.js"></script>
 </head>
 <body>
-  <header>
-    <h1>Notebook</h1>
-    <h2>for Programmers</h2>
-  </header>
-  <main>
-    <form>
-      <textarea id="#note-input" cols="40" rows="8" placeholder="New notes go here..."></textarea><br>
-      <button id="create">Create</button>
-    </form>
-  </main>
+  <div class="page-container">
+    <div class="content-wrapper">
+      <header>
+        <h1>Notebook</h1>
+        <h2>for Programmers</h2>
+      </header>
 
-  <section>
-    <h3>Your Notes</h3>
-  </section>
+      <main>
+        <form>
+          <textarea id="#note-input" cols="40" rows="8" placeholder="New notes go here..."></textarea><br>
+          <button id="create">Create</button>
+        </form>
+      </main>
 
-  <div id="notes">
+      <section class="note" id="note"></section>
+
+      <section>
+        <h3>Your Notes</h3>
+      </section>
+
+      <div class="notes" id="notes">
+      </div>
+    </div>
+
+    <footer>
+      <p class="footer-quote"><em>"Weeks of programming can save you hours of planning"</em> - some programmer</p>
+    </footer>
   </div>
-
-  <p id="note"></p>
-
 </body>
 </html>

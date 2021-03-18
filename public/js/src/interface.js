@@ -2,29 +2,59 @@
 
 const notebook = new Notebook;
 
+resetHashUrl();
+makeEnterCreateNote();
 getNotes();
 displayOldNotes();
+makeClickShowNote();
 
 document.querySelector('#create').addEventListener('click', (event) => {
   event.preventDefault();
   create(document.querySelector('textarea').value);
-
   setTimeout(() => {
     storeNotes();
     displayPreviews();
+    makeClickShowNote();
+    document.querySelector('textarea').value = ''
   }, 200);
 });
+
+function makeClickShowNote() {
+  window.addEventListener('hashchange', showNote)
+}
+
+function showNote() {
+  createNoteHtml(getNoteFromUrl(window.location))
+}
+
+function getNoteFromUrl(location) {
+  return location.hash.split('#')[1];
+}
+
+function createNoteHtml(index) {
+  document.getElementById('note').innerHTML = notebook.notesObject()[index];
+}
 
 async function create(note) {
   await emojify(note)
   .then(data => notebook.add(new Note(data.emojified_text)));
 }
 
+function makeEnterCreateNote() {
+  document.querySelector('textarea').addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      document.getElementById('create').click();
+    }
+  })
+}
+
 async function emojify(note) {
   const response = await fetch('https://makers-emojify.herokuapp.com', {
     method: 'POST',
-    mode: 'cors',
     headers: { 'Content-Type': 'application/json' },
+    credentials: 'same-origin',
+    mode: 'cors',
     body: `{ "text":"${note}" }`
   });
   return await response.json();
@@ -35,14 +65,6 @@ function displayPreviews() {
   document.getElementById('notes')
     .innerHTML += `<a href="#${index}">${notebook.previews()[index]}<a><br>`
 }
-
-// function displayNote() {
-//   window.addEventListener('hashchange', () => {
-//     const noteId = window.location.search.split('').reverse[0];
-//     document.getElementById('note')
-//       .innerHTML = notebook.notes[noteId];
-//   });
-// }
 
 function storeNotes() {
   localStorage.setItem('notes', JSON.stringify(notebook.notesObject()))
@@ -63,4 +85,8 @@ function displayOldNotes() {
     html += `<a href="#${i}">${notebook.notes[i].preview}</a><br>`
   }
   notes.innerHTML = html
+}
+
+function resetHashUrl() {
+  history.pushState(null, null, ' ')
 }
