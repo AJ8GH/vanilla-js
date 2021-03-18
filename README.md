@@ -2,6 +2,17 @@
 
 ## No libraries, no frameworks, just JavaScript
 
+As the title suggests, the purpose of this project was to build a single page front-end web application using javascript. The app is written in pure javascript, without the use of additional libraries and frameworks.
+
+[You can check out the finished application here!](http://notes-for-codes.surge.sh/)
+
+## Design considerations
+
+The program was designed to meet the requirements of these [user stories](#user-stories)
+
+the first thing to build was a testing framework, in order to be able to follow a TDD process and test drive the rest of the application.
+
+
 ## User Stories
 ```
 As a programmer
