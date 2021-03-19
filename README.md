@@ -1,10 +1,13 @@
-# Vanilla JS Project
+# Notebook App
 
-## No libraries, no frameworks, just JavaScript
+## Vanilla JS Project. No libraries, no frameworks, just JavaScript
 
-As the title suggests, the purpose of this project was to build a single page front-end web application using javascript. The app is written in pure javascript, without the use of additional libraries and frameworks.
+As the title suggests, the purpose of this project was to build a single page front-end web application using only javascript. The app is written in pure javascript, without the use of additional libraries and frameworks, including testing frameworks, which also needed to be written in javascript.
 
-[You can check out the finished application here!](http://notes-for-codes.surge.sh/)
+**Check out the deployed application here:**
+
+[Notes for Codes](http://notes-for-codes.surge.sh/)
+---------------------------------------------------
 
 ## Design considerations
 
@@ -38,7 +41,8 @@ So I can remember what I took down
 
 Objects   | Messages
 ----------|-----------
-Note      | content
-          | notes (property)
-Notebook  | create(function)
-Notebook  | preview(function)
+Note      | content (property)
+Note      | preview (property)
+Notebook  | notes (property)
+Notebook  | add (function)
+Notebook  | previews (function)
