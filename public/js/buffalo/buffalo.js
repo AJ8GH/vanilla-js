@@ -1,10 +1,14 @@
-function describe(testGroup, itBlock) {
-  console.log(`${testGroup}`)
-  return itBlock();
+let passCount = 0
+let failCount = 0
+const main = document.getElementById('specs')
+
+function describe(testGroup, it) {
+  addGroupToHtml(testGroup);
+  return it();
 }
 
 function it(test, expectation) {
-  console.log(test);
+  addTestToHtml(test);
   expectation();
 }
 
@@ -12,55 +16,55 @@ function expect(actual) {
   return {
     toEqual: (expected) => {
       if (actual == expected) {
-        console.log('=== PASS ===\n\n');
+        addPassToHtml();
       } else {
-        console.log('*** FAIL ***');
-        console.log(`expected ${actual} to equal ${expected}\n\n`);
+        addFailToHtml();
+        addFailInfoToHtml(actual, 'to equal', expected);
       }
     },
 
     toNotEqual: (expected) => {
       if (actual != expected) {
-        console.log('=== PASS ===\n\n');
+        addPassToHtml();
       } else {
-        console.log('*** FAIL ***');
-        console.log(`expected ${actual} to not equal ${expected}\n\n`);
+        addFailToHtml();
+        addFailInfoToHtml(actual, 'not to equal', expected);
       }
     },
 
     toBe: (expected) => {
       if (actual === expected) {
-        console.log('=== PASS ===\n\n');
+        addPassToHtml();
       } else {
-        console.log('*** FAIL ***');
-        console.log(`expected ${actual} to be ${expected}\n\n`);
+        addFailToHtml();
+        addFailInfoToHtml(actual, 'to be', expected);
       }
     },
 
     toNotBe: (expected) => {
       if (actual !== expected) {
-        console.log('=== PASS ===\n\n');
+        addPassToHtml();
       } else {
-        console.log('*** FAIL ***');
-        console.log(`expected ${actual} to not be ${expected}\n\n`);
+        addFailToHtml();
+        addFailInfoToHtml(actual, 'not to be', expected);
       }
     },
 
     toBeEmpty: () => {
       if (actual.length === 0) {
-        console.log('=== PASS ===\n\n');
+        addPassToHtml();
       } else {
-        console.log('*** FAIL ***');
-        console.log(`expected ${actual} to be empty\n\n`);
+        addFailToHtml();
+        addFailInfoToHtml(actual, 'to be empty', null);
       }
     },
 
     toInclude: (expected) => {
       if (actual.includes(expected)) {
-        console.log('=== PASS ===\n\n');
+        addPassToHtml();
       } else {
-        console.log('*** FAIL ***');
-        console.log(`expected ${actual} to include ${expected}\n\n`);
+        addFailToHtml();
+        addFailInfoToHtml(actual, 'to include', expected);
       }
     }
   };

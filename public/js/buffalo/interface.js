@@ -1,13 +1,28 @@
-function displaySpec(describes, it, result, message) {
-
+function addGroupToHtml(testGroup) {
+  main.innerHTML += `<h3 class="group">${testGroup}</h3>`
 }
 
-function createDescribes(describe) {
-  const element = document.createElement('p');
-  element.setAttribute('class', 'describe');
-  const node = document.createTextNode(describe);
-  element.appendChild(node);
-  document.getElementById('specs').appendChild(element);
+function addTestToHtml(test) {
+  main.innerHTML += `<p class="test">${test}</p>`
 }
 
-createDescribes('This')
+function addPassToHtml() {
+  main.innerHTML += `<p class="pass">PASS</p>`
+  passCount++
+  updateResultCount();
+}
+
+function addFailToHtml() {
+  main.innerHTML += `<p class="fail">FAIL</p>`
+  failCount++
+  updateResultCount();
+}
+
+function addFailInfoToHtml(actual, message, expected) {
+  main.innerHTML += `<p class="fail-info">expected ${actual} ${message} ${expected}</p>`
+}
+
+function updateResultCount() {
+  document.getElementById('result-count')
+    .innerHTML = `<h4>${passCount} Passes | ${failCount} Failures</h4>`
+}
