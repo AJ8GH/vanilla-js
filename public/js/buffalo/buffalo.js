@@ -1,15 +1,24 @@
-let passCount = 0
-let failCount = 0
-const main = document.getElementById('specs')
+let testCount = 0
 
 function describe(testGroup, it) {
   addGroupToHtml(testGroup);
-  return it();
+  try {
+    return it();
+  } catch(err) {
+    addErrorToGroup(err.message);
+  }
 }
 
+updateResultCount();
+
 function it(test, expectation) {
+  testCount++
   addTestToHtml(test);
-  expectation();
+  try {
+    expectation();
+  } catch(err) {
+    addErrorToHtml(err.message);
+  }
 }
 
 function expect(actual) {
@@ -47,15 +56,6 @@ function expect(actual) {
       } else {
         addFailToHtml();
         addFailInfoToHtml(actual, 'not to be', expected);
-      }
-    },
-
-    toBeEmpty: () => {
-      if (actual.length === 0) {
-        addPassToHtml();
-      } else {
-        addFailToHtml();
-        addFailInfoToHtml(actual, 'to be empty', null);
       }
     },
 

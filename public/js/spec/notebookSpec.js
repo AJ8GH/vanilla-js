@@ -7,7 +7,7 @@ describe('Notebook', () => {
   describe('notes', () => {
     it('starts empty', () => {
       cleanTestData();
-      expect(notebook.notes).toBeEmpty()
+      expect(notebook.notes.length).toBe(0)
     });
   });
 
